@@ -27,7 +27,7 @@ public class ShrimpFarmController {
 	@Autowired
 	private ShrimpPondsRepository pondsRepository;
 
-	int size = 0;
+	
 
 	@GetMapping("showForm")
 	public String showZipcodeForm(Farms farms) {
@@ -82,9 +82,8 @@ public class ShrimpFarmController {
 	public String getFarmSize(@PathVariable("id") String id, Model model) throws ShrimpFarmException {
 		Farms farm = farmRepository.findById(id).orElseThrow(() -> new ShrimpFarmException("Farm not found :: " + id));
 		List<Ponds> farm1 = pondsRepository.findByFarmId(id);
-		farm1.forEach(f -> {
-			size += Integer.parseInt(f.getPondSize());
-		});
+		int size = 0;
+		size = farm1.stream().mapToInt(f -> Integer.parseInt(f.getPondSize())).sum();
 		farm.setFarmSize(String.valueOf(size));
 		model.addAttribute("farms", farmRepository.findAll());
 		return "index";
