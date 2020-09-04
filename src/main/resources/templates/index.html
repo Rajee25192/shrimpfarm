@@ -35,8 +35,10 @@
 										<th>Farm Name</th>
 										<th>Farm Location</th>
 										<th>Update</th>
-                                        <th>Delete</th>
-                                         <th>View Ponds</th>
+										<th>Delete</th>
+										<th>View Ponds</th>
+										<th>Get Farm Size</th>
+										<th>Farm Size</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -44,10 +46,18 @@
 										<td th:text="${farm.id}"></td>
 										<td th:text="${farm.farmName}"></td>
 										<td th:text="${farm.location}"></td>
-										 <td><a th:href="@{/farms/edit/{id}(id=${farm.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                        <td><a th:href="@{/farms/deleteFarms/{id}(id=${farm.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
-										 <td><a th:href="@{/farms/{farmId}/listponds(farmId=${farm.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                            
+										<td><a th:href="@{/farms/edit/{id}(id=${farm.id})}"
+											class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+										<td><a
+											th:href="@{/farms/deleteFarms/{id}(id=${farm.id})}"
+											class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+										<td><a
+											th:href="@{/farms/{farmId}/listponds(farmId=${farm.id})}"
+											class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+										<td><a
+											th:href="@{/farms/getFarmSize/{id}(id=${farm.id})}"
+											class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+										<td th:text="${farm.farmSize}"></td>
 									</tr>
 								</tbody>
 							</table>
