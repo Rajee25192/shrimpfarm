@@ -80,13 +80,13 @@ public class ShrimpFarmController {
 
 	@GetMapping("getFarmSize/{id}")
 	public String getFarmSize(@PathVariable("id") String id, Model model) throws ShrimpFarmException {
-		Farms farms = farmRepository.findById(id).orElseThrow(() -> new ShrimpFarmException("Farm not found :: " + id));
+		Farms farm = farmRepository.findById(id).orElseThrow(() -> new ShrimpFarmException("Farm not found :: " + id));
 		List<Ponds> farm1 = pondsRepository.findByFarmId(id);
 		farm1.forEach(f -> {
 			size += Integer.parseInt(f.getPondSize());
 		});
-		farms.setFarmSize(String.valueOf(size));
-		model.addAttribute("farms", farms);
+		farm.setFarmSize(String.valueOf(size));
+		model.addAttribute("farms", farmRepository.findAll());
 		return "index";
 	}
 }
